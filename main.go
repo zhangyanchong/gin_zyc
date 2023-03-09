@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gin_zyc/app/tools"
+	"gin_zyc/route"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,6 @@ func main() {
 	//r.GET("/", func(c *gin.Context) {
 	//	c.String(http.StatusOK, "hello World!")
 	//})
-
+	route.Register(r)
 	r.Run(":" + appJson["app_port"].(string))
 }
