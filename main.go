@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gin_zyc/config"
+	"gin_zyc/app/tools"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,7 +11,7 @@ func main() {
 	// 1.创建路由
 	r := gin.Default()
 
-	appJson, err := config.ParseConfig("app")
+	appJson, err := tools.ParseConfig("app")
 	if err != nil {
 		fmt.Println(err)
 	}
