@@ -5,9 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type IndexController struct {
+type indexController struct {
 }
 
-func (a *IndexController) Hello(c *gin.Context) {
+var IndexController indexController
+
+func (a *indexController) Hello(c *gin.Context) {
 	tools.Success(c, "hello", nil)
 }
