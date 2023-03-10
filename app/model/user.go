@@ -12,3 +12,10 @@ type User struct {
 func (User) TableName() string {
 	return "user"
 }
+
+type UserGoods struct {
+	UserId    int
+	Name      string
+	Age       int
+	GoodsName string `gorm："column:goods_name"`
+}

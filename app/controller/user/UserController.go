@@ -1,7 +1,6 @@
 package user
 
 import (
-	"fmt"
 	"gin_zyc/app/model"
 	"gin_zyc/app/tools"
 	"gin_zyc/app/tools/db"
@@ -51,10 +50,27 @@ func (a *userController) Update(c *gin.Context) {
 
 /**删除用户*/
 func (a *userController) Delete(c *gin.Context) {
-	rs := db.DB().Delete(&model.User{}, 7)
-	fmt.Println(rs)
+	rs := db.DB().Delete(&model.User{}, 6)
 	if rs.Error != nil {
 		tools.Success(c, "删除失败", nil)
 	}
-	tools.Success(c, "删除成功", nil)
+	//判断是否删除成功了
+	if rs.RowsAffected > 0 {
+		tools.Success(c, "删除成功", nil)
+	} else {
+		tools.Success(c, "删除失败", nil)
+	}
+}
+
+/*用户的商品**/
+func (a *userController) UserGoods(c *gin.Context) {
+	//sqlStr := "select  goods.user_id,user.age,user.name,goods.goods_name from user " +
+	//	"left join goods   on user.id=goods.user_id " +
+	//	"where  user.age>10"
+	sqlStr := "select  b.user_id,a.age,a.name,b.goods_name from user as  a " +
+		"left join goods as b  on a.id=b.user_id " +
+		"where  a.age>10"
+	f := []model.UserGoods{}
+	db.DB().Raw(sqlStr).Scan(&f)
+	tools.Success(c, "usergoods", f)
 }

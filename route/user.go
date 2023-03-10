@@ -15,5 +15,6 @@ func (c userRoute) Register(r *gin.Engine) {
 	r.GET("/user/add", user.UserController.Add)
 	r.GET("/user/update", user.UserController.Update)
 	r.GET("/user/delete", user.UserController.Delete)
+	r.GET("/user/usergoods", user.UserController.UserGoods)
 
 }
