@@ -5,4 +5,5 @@ import "gin_zyc/app/controller"
 
 func Register(r *gin.Engine) {
 	r.GET("/hello", controller.IndexController.Hello)
+	UserRoute.Register(r)
 }

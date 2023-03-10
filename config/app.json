@@ -1,5 +1,13 @@
 {
   "app_name": "new",
   "app_mode": "debug",
-  "app_port": "8989"
+  "app_port": "8989",
+  "mysql": {
+     "ip": "127.0.0.1",
+     "username": "root",
+     "password": "7$X5OO%guEzt5f",
+     "port": "3306",
+     "database":"go_zyc",
+     "charset": "utf8mb4"
+  }
 }
