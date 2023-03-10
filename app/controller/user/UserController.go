@@ -17,7 +17,16 @@ var UserController userController
 func (a *userController) GetList(c *gin.Context) {
 	user := []model.User{}
 	db.DB().Find(&user)
-	tools.Success(c, "user", user)
+	//修改返回来的结果，换成新的切片操作
+	type xinUser struct {
+		User model.User
+		Sex  int
+	}
+	var showXinUser []xinUser
+	for _, v := range user {
+		showXinUser = append(showXinUser, xinUser{User: v, Sex: 20})
+	}
+	tools.Success(c, "user", showXinUser)
 }
 
 /*添加用户**/
