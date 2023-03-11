@@ -21,5 +21,5 @@ type RedisConfig struct {
 	Ip       string `json:"ip"`
 	Password string `json:"password"`
 	Port     string `json:"port"`
-	Database string `json:"database"`
+	Database int    `json:"database"`
 }

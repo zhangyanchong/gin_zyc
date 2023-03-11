@@ -22,14 +22,14 @@ func RedisInit() {
 	dbStruct := appJson.Redis
 	// 创建
 	redisClient := redis.NewClient(&redis.Options{
-		Addr:     dbStruct.Ip,
+		Addr:     dbStruct.Ip + ":" + dbStruct.Port,
 		Password: dbStruct.Password,
-		DB:       int(dbStruct.Database),
+		DB:       dbStruct.Database,
 	})
 	// 使用超时上下文，验证redis
 	_, err := redisClient.Ping(context.Background()).Result()
 	if err != nil {
-		panic("redis连接错误" + err)
+		fmt.Println(err)
 	}
 	redisdb = redisClient
 }

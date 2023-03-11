@@ -19,6 +19,9 @@ func main() {
 	//数据库连接
 	db.MysqlInit()
 
+	//redis连接
+	db.RedisInit()
+
 	appJson, err := tools.ParseConfig("app")
 	if err != nil {
 		fmt.Println(err)
