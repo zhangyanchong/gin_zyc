@@ -9,5 +9,11 @@
      "port": "3306",
      "database":"go_zyc",
      "charset": "utf8mb4"
+  },
+  "redis": {
+     "ip": "127.0.0.1",
+     "password": "",
+     "port": "6379",
+     "database": "1"
   }
 }

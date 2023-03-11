@@ -5,6 +5,7 @@ type App struct {
 	AppModel string      `json:"app_mode"`
 	AppPort  string      `json:"app_port"`
 	Mysql    MysqlConfig `json:"mysql"`
+	Redis    RedisConfig `json:"redis"`
 }
 
 type MysqlConfig struct {
@@ -14,4 +15,11 @@ type MysqlConfig struct {
 	Port     string `json:"port"`
 	Database string `json:"database"`
 	Charset  string `json:"charset"`
+}
+
+type RedisConfig struct {
+	Ip       string `json:"ip"`
+	Password string `json:"password"`
+	Port     string `json:"port"`
+	Database string `json:"database"`
 }
