@@ -31,5 +31,6 @@ func RedisInit() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	defer redisClient.Close()
 	redisdb = redisClient
 }

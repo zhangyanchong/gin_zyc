@@ -27,5 +27,6 @@ func MysqlInit() {
 	if err != nil {
 		panic("failed to connect database")
 	}
+
 	db = dbcon
 }
