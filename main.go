@@ -13,6 +13,11 @@ func main() {
 	// 1.创建路由
 	r := gin.Default()
 
+	//加载静态资源
+	r.Static("/assets", "./assets")
+	//加载html 页面
+	r.LoadHTMLGlob("views/*/*")
+
 	//路由注册
 	route.Register(r)
 
