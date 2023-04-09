@@ -12,4 +12,5 @@ var HtmlRoute htmlRoute
 
 func (c htmlRoute) Register(r *gin.Engine) {
 	r.GET("/views/user/login", html.HtmlController.Login)
+	r.GET("/", html.HtmlController.Login)
 }

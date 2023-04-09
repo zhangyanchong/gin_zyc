@@ -3,6 +3,7 @@ package admin
 import (
 	"gin_zyc/app/model"
 	"gin_zyc/app/tools"
+	"gin_zyc/app/tools/db"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,9 +14,12 @@ var AdminController adminController
 
 func (a adminController) Login(c *gin.Context) {
 	var loginReq model.LoginReq
-	if err := c.ShouldBindJSON(loginReq); err != nil {
+	if err := c.ShouldBind(&loginReq); err != nil {
 		tools.Error(c, "参数必填", nil)
 		return
 	}
-	tools.Success(c, "ok", nil)
+	admin := model.Admin{}
+	db.DB().Where("username=? and password=?", loginReq.Username, loginReq.Password).Find(&admin)
+
+	tools.Success(c, "ok", admin)
 }
