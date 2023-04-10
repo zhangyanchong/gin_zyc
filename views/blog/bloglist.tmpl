@@ -11,12 +11,17 @@
     <span>张三的博客列表</span>
 </div>
 <div style="margin-top:50px;background-color: antiquewhite;width:600px;height: auto;height:600px">
-    <div style="width: 500px;margin-top: 10px">
-        <span style="width: 400px;">标题1</span><span style="margin-left: 20px;float: right;cursor: pointer">详情</span>
+<!--    <div style="width: 500px;margin-top: 10px">-->
+<!--        <span style="width: 400px;">标题1</span><span style="margin-left: 20px;float: right;cursor: pointer">详情</span>-->
+<!--    </div>-->
+    {{range  $k,$v :=.Data}}
+    <div style="width: 500px;margin-top: 10px" id="{{$k}}">
+        <span style="width: 400px;">{{$v.Title}}</span>
+        <span style="margin-left: 20px;float: right;cursor: pointer">
+            <a href="/views/blog/detail?id={{$v.Id}}">详情</a>
+        </span>
     </div>
-    <div style="width: 500px;margin-top: 10px">
-        <span style="width: 400px;">标题2</span><span style="margin-left: 20px;float: right;cursor: pointer">详情</span>
-    </div>
+    {{end}}
 </div>
 </body>
 <html>
