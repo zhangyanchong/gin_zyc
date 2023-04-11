@@ -7,11 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-   <div>
-     <span><h1>张三的博客</h1></span>
+   <div style=" width:350px;">
+       <div style="float: left;width: 200px">
+        <span >张三的博客</span>
+       </div>
+       <div style="float:right;width: 100px">
+       <span>
+        <a href="/views/blog/list" style="color:green">返回</a>
+       </span>
+       </div>
    </div>
-   </hr>
-   <div>
+
+   <div style="clear: both;padding-top:30px">
        <span style="font-size:15px">id：</span>
        <input  type="text" name="txt_title" id="txt_id"  value="{{.Data.Id}}" placeholder="请输入标题" size="20" style="font-size:20px">
    </div>
