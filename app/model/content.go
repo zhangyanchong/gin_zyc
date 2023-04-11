@@ -7,6 +7,11 @@ type Content struct {
 	CreateTime int    `json:"create_time""`
 }
 
+type ContentReq struct {
+	Title   string `form:"title" json:"title" binding:"required"`
+	Content string `form:"content" json:"content" binding:"required"`
+}
+
 func (Content) TableName() string {
 	return "content"
 }

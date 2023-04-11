@@ -1,0 +1,52 @@
+{{ define "blog/blogadd.tmpl" }}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+   <div>
+     <span><h1>张三的博客</h1></span>
+   </div>
+   </hr>
+   <div>
+       <span style="font-size:15px">标题：</span>
+       <input  type="text" name="txt_title" id="txt_title" placeholder="请输入标题" size="35" style="font-size:20px">
+   </div>
+   <div style="margin-top:10px">
+       <span style="font-size:15px">内容：</span>
+       <textarea id="txt_content" cols="45" rows="5" placeholder="请输入内容"></textarea>
+   </div>
+   <div style="margin-top:20px ">
+       <span  style="padding-left:180px;color: greenyellow;cursor: pointer; display: inline-block;" onclick="add()">提交</span>
+   </div>
+</body>
+<script>
+     function  add(){
+         var data={};
+         data.title=$("#txt_title").val();
+         data.content=$("#txt_content").val();
+         $.ajax({
+             type: "POST",
+             url: "/api/blog/blogAddApi",
+             dataType:'json',
+             data: data,
+             success: function(info){
+                 console.log(info);
+                 if(info.code==200){
+                     if(info.data.id!=0){
+                         window.location.href="/views/blog/list";
+                     }else{
+                         alert("系统错误");
+                     }
+                 }else if(info.code==500){
+                     alert(info.msg);
+                 }
+             }
+         });
+     }
+</script>
+</html>
+{{end}}

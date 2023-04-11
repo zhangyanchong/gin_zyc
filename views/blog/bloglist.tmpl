@@ -7,22 +7,47 @@
     <title>Document</title>
 </head>
 <body>
-<div>
-    <span>张三的博客列表</span>
+<div style="margin-bottom:20px;width:600px;padding-bottom:1px">
+    <span style="float: left">张三的博客列表</span>
+    <span style="float: right">
+        <a href="/views/blog/add" style="color:green">添加</a>
+    </span>
 </div>
-<div style="margin-top:50px;background-color: antiquewhite;width:600px;height: auto;height:600px">
+<div style="margin-top:30px;background-color: antiquewhite;width:600px;height: auto;height:600px;clear: both">
 <!--    <div style="width: 500px;margin-top: 10px">-->
 <!--        <span style="width: 400px;">标题1</span><span style="margin-left: 20px;float: right;cursor: pointer">详情</span>-->
 <!--    </div>-->
+
     {{range  $k,$v :=.Data}}
     <div style="width: 500px;margin-top: 10px" id="{{$k}}">
         <span style="width: 400px;">{{$v.Title}}</span>
         <span style="margin-left: 20px;float: right;cursor: pointer">
-            <a href="/views/blog/detail?id={{$v.Id}}">详情</a>
+            <a href="/views/blog/detail?id={{$v.Id}}">详情</a>&nbsp;&nbsp;&nbsp;
+            <a  href="javascript:void(0)" onclick="del('{{$v.Id}}')">删除</a>
         </span>
     </div>
     {{end}}
 </div>
 </body>
+<script>
+     function  del(id){
+         var data={};
+         data.id=id;
+         $.ajax({
+             type: "POST",
+             url: "/api/blog/blogDelApi",
+             dataType:'json',
+             data: data,
+             success: function(info){
+                 if(info.code==200){
+                         alert("删除成功")
+                         window.location.reload();
+                 }else if(info.code==500){
+                     alert(info.msg);
+                 }
+             }
+         });
+     }
+</script>
 <html>
 {{end}}
